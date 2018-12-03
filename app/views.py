@@ -30,5 +30,5 @@ def register():
 @app.route('/users')
 @login_required
 def get_users():
-    us = [u.__dict__ for u in models.User.query.all()]
+    us = [(u.username, u.email, u.password, u.dt_criacao, [o.price for o in u.offers]) for u in models.User.query.all()]
     return jsonify(us)
