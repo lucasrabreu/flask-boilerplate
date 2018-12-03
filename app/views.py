@@ -26,10 +26,9 @@ def register():
     else: #Get ou post errado
         return render_template('registration.html', form=form)
     
+
 @app.route('/users')
 @login_required
 def get_users():
-    us = [(u.username, u.email, u.password, u.dt_criacao) for u in models.User.query.all()]
+    us = [u.__dict__ for u in models.User.query.all()]
     return jsonify(us)
-
-

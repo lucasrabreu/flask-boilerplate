@@ -4,15 +4,14 @@ from werkzeug.security import generate_password_hash, \
      check_password_hash
 from flask_security import Security, SQLAlchemyUserDatastore, \
     UserMixin, RoleMixin, login_required
-from sqlalchemy.dialects.sqlite import \
-            BLOB, BOOLEAN
+
 
 offers = db.Table('offers',
     db.Column('offer_id', db.Integer, db.ForeignKey('offer.id'), primary_key=True),
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
 )
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin, object):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -37,7 +36,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
 
-class Role(db.Model, RoleMixin):
+class Role(db.Model, RoleMixin, object):
     __tablename__ = 'roles'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)

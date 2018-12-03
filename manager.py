@@ -24,15 +24,15 @@ def test_users():
     of3 = Offer(price=30)
     of4 = Offer(price=40)
 
-    # lucas.offers = [of1, of2]
+    lucas.offers = [of1, of2]
     db.session.add(lucas)
-    # db.session.add(of1)
-    # db.session.add(of2)
+    db.session.add(of1)
+    db.session.add(of2)
     db.session.commit()
 
-    # lucas2.offers = [of2, of3]
+    lucas2.offers = [of2, of3]
     db.session.add(lucas2)
-    # db.session.add(of3)
+    db.session.add(of3)
     db.session.commit()
 
 @manager.command
