@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lawction</title>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+        <a href='/users'>Usuários</a>
+        <a href='/logout'>Logout-se!</a>
+        <p>Olá, {{current_user.username}}</p>
+    {% else %}
+        <a href='/register'>Cadastre-se!</a>
+        <a href='/login'>Login-se!</a>
+    {% endif%}
+</body>
+</html>
