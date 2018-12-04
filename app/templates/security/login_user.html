@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    
+    <br>
+    <div class='columns'>
+        <div class='column'></div>
+        <div class='column'>
+            <h2 class='title'>Login</h2>
+            <form method="POST" action="{{ url_for_security('login') }}">
+                {{ login_user_form.csrf_token }}
+                <div class="field">
+                {{ login_user_form.email.label(class_="label") }} 
+                    <div class="control">
+                        {{ login_user_form.email(size=5, class_="input") }}
+                    </div>
+                </div>
+                <div class="field">
+                    {{ login_user_form.password.label(class_="label") }} 
+                    <div class="control">
+                        {{ login_user_form.password(size=5, class_="input") }}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        {{ login_user_form.submit(class_="button is-link") }}
+                    </div>
+                </div>
+            </form>
+            <br>
+            {% for field in login_user_form.errors %}
+            {% for error in login_user_form.errors[field] %}
+                    <div class="alert alert-error">
+                        <strong>Error!</strong> {{field}} - {{error}}
+                    </div>
+            {% endfor %}
+            {% endfor %}
+            </div>
+            <div class='column'></div>
+    </div>
+
+{% endblock %}
+
+
+

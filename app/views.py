@@ -9,36 +9,37 @@ from flask_login.utils import login_user, logout_user, login_required
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    form = forms.RegistrationForm()
-    if form.validate_on_submit():
-        # cadastra usuario
-        u = models.User(username=request.form['username'],
-             email=request.form['email'])
-        u.set_password(request.form['password'])
-        db.session.add(u)
-        db.session.commit()
-
-        return redirect('/')
-    else: #Get ou post errado
-        return render_template('registration.html', form=form)
     
+
+@app.route('/offer', methods=['GET', 'POST'])
+@login_required
+def set_offer():
+    form = forms.OfferForm()
+    if form.validate_on_submit():
+        print(request.form)
+        return render_template('offer.html', form=form)
+    else:
+        print(form.expiration_date)
+        print(form.errors)
+        return render_template('offer.html', form=form)
+
 
 @app.route('/users')
 @login_required
 def get_users():
-    us = [(u.username, u.email, u.password, u.dt_criacao, [o.price for o in u.offers]) 
+    response = {}
+    response['title'] = 'Usuários'
+    response['content'] = [(u.name, u.email, u.dt_criacao, [o.price for o in u.offers]) 
             for u in models.User.query.all()]
-    return jsonify(us)
+    return render_template('response.html', response=response)
 
 @app.route('/offers')
 @login_required
 def get_offers():
-    os = [(o.id, o.price, [(u.username, u.email ) for u in o.users]) 
+    response = {}
+    response['title'] = 'Offers'
+    response['content'] = [(o.id, o.price, [(u.name, u.email ) for u in o.users]) 
             for o in models.Offer.query.all()]
-    return jsonify(os)
+    return render_template('response.html', response=response)
 
     

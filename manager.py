@@ -17,8 +17,8 @@ def commands():
 @manager.command
 def test_users():
     db.create_all()
-    lucas = User(username='lucass', email='lucas@gmail.com', active=True, password='0123456')
-    lucas2 = User(username='lucass2', email='lucas2@gmail.com', active=True, password='0123456')
+    lucas = User(name='lucas', email='lucasribeiroabreu@live.com', active=False, password='123mudar')
+    lucas2 = User(name='admin', email='lucasribeiroabreu@gmail.com', active=False, password='123mudar')
     of1 = Offer(price=10)
     of2 = Offer(price=20)
     of3 = Offer(price=30)
@@ -34,19 +34,36 @@ def test_users():
     db.session.add(lucas2)
     db.session.add(of3)
     db.session.commit()
-
-@manager.command
-def clean_db():
+    print('created')
     users = User.query.all()
     offers = Offer.query.all()
-
     for u in users:
         db.session.delete(u)
-    
     for o in offers:
         db.session.delete(o)
-
     db.session.commit()
+    print('deleted')
+
+    
+@manager.command
+def create():
+    db.create_all()
+    print('created!')
+
+@manager.command
+def drop():
+    db.drop_all()
+    print('dropped')
+
+# Create a user to test with
+@manager.command
+def create_user():
+    db.create_all()
+    user_datastore.create_user(name='Lucas', 
+                               email='lucasribeiroabreu@gmail.com', 
+                               password='123mudar')
+    db.session.commit()
+
 
 if __name__ == "__main__":
     manager.run()

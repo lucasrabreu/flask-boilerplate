@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h2>Oferta</h2>
+    
+    <form method="POST" action="/offer">
+        {{ form.csrf_token }}
+        {{ form.name.label }} {{ form.name(size=20) }}<br>
+        {{ form.number.label }} {{ form.number(size=20) }}<br>
+        {{ form.link.label }} {{ form.link(size=20) }}<br>
+        {{ form.valor.label }} {{ form.valor(size=20) }}<br>
+        {{ form.expiration_date.label }} {{ form.expiration_date() }}<br>
+
+        {{ form.submit }}
+    </form>
+
+{% endblock %}
+
+
+   
+
