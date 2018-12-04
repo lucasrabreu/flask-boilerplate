@@ -14,26 +14,38 @@
                 {{ register_user_form.csrf_token }}
                 <div class="field">
                     {{ register_user_form.name.label(class_="label") }} 
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {{ register_user_form.name(size=5, class_="input") }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user-circle"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="field">
                 {{ register_user_form.email.label(class_="label") }} 
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {{ register_user_form.email(size=5, class_="input") }}
+                        <span class="icon is-left">
+                                <i class="fas fa-envelope"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="field">
                     {{ register_user_form.password.label(class_="label") }} 
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {{ register_user_form.password(size=5, class_="input") }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="field">
                     {{ register_user_form.password_confirm.label(class_="label") }} 
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {{ register_user_form.password_confirm(size=5, class_="input") }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="field">

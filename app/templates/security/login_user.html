@@ -14,14 +14,20 @@
                 {{ login_user_form.csrf_token }}
                 <div class="field">
                 {{ login_user_form.email.label(class_="label") }} 
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {{ login_user_form.email(size=5, class_="input") }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user-circle"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="field">
                     {{ login_user_form.password.label(class_="label") }} 
-                    <div class="control">
+                    <div class="control has-icons-left">
                         {{ login_user_form.password(size=5, class_="input") }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="field">
